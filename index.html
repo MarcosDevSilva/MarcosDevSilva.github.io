@@ -13,26 +13,44 @@
 </head>
 <body>
     <div class="container">
-        <img class="banner" src="img/banner.jpg" alt="Banner do Congresso Jovem">
-        <h1>Congresso Jovem</h1>
-        <h2>Juntos em Movimento</h2>
-        <p>Dias: 2 e 3 de agosto</p>
+        <img class="banner" src="img/banner.jpeg" alt="Banner do Congresso Jovem">
+        <H1>Convidados</H1>
+        <span id="contador"></span>
+        <script>
+            function atualizarContador() {
+                const dataFinal = new Date('April 1, 2025 10:00:00').getTime();
+                const agora = new Date().getTime();
+                const diferenca = dataFinal - agora;
+                
+                if (diferenca <= 0) {
+                    document.getElementById('contador').innerText = 'O prazo acabou!';
+                    return;
+                }
+                
+                const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+                
+                document.getElementById('contador').innerText = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+            }
+            
+            atualizarContador();
+            setInterval(atualizarContador, 1000);
+        </script>
         
         
         <div class="speakers">
             <div class="speaker">
-                <img src="img/rafarose.jpg" alt="Rafael Santos e Rose Rios">
+                <img src="img/rafarose.jpeg" class="rafael" alt="Rafael Santos e Rose Rios">
                 <p>Pr.Rafael Santos & Rose Rios</p>
             </div>
             <div class="speaker">
-                <img src="img/irlanacsa.jpg" alt="Irlan e Acsa Muniz">
+                <img src="img/irlanacsa.jpeg" alt="Irlan e Acsa Muniz">
                 <p>Pr. Irlan & Acsa Muniz</p>
             </div>
         </div>   
-        <i class="fa fa-whatsapp"></i>
-        <i class="fa fa-whatsapp" style="font-size:24px"></i>
-        <i class="fa fa-whatsapp" style="font-size:36px"></i>
-        <i class="fa fa-whatsapp" style="font-size:48px;color:rgb(0, 255, 38)"></i>
+        
         <br>
         
         <p>Mais informações:</p>
@@ -40,7 +58,7 @@
             <button style="font-size:24px"><i class="fa fa-whatsapp"></i>
             </button>
           </a>          
-          <a href="https://www.youtube.com/watch?v=QW6SaNLe6DM" class="floating-button">Inscreva-se</a>
+          <a href="https://www.youtube.com/watch?v=QW6SaNLe6DM" class="floating-button">Aguarde ...</a>
     </div>
 </body>
 <footer>

@@ -53,7 +53,7 @@ h1 {
 
 button {
     background-color: #25D366; /* Verde do WhatsApp */
-    margin-left:40%;
+    margin-left:43%;
     color: white;
     font-size: 24px;
     border: none;
@@ -95,8 +95,8 @@ button {
     position: fixed;
     right: 20px;
     bottom: 20px;
-    background-color: #007BFF;
-    color: white;
+    background-color: #f8a808;
+    color: black;
     font-size: 18px;
     padding: 15px 30px;
     border-radius: 50px;
@@ -106,7 +106,35 @@ button {
   }
   
   .floating-button:hover {
-    background-color: #0056b3;
+    background-color: #765c06;
     transform: scale(1.1);
   }
+
+  #contador {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    font-weight: bold;
+} 
+
+  /*
+  #contador {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    font-weight: bold;
+} */
+
   
