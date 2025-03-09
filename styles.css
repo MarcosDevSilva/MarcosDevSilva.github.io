@@ -1,0 +1,140 @@
+body {
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    background: url('img/fundo.png') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+h1 {
+    color: #333;
+}
+ h2 {
+    color: #D2691E;
+}
+
+.banner {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.speakers {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.speaker {
+    text-align: center;
+    width: 45%;
+}
+
+.speaker img {
+    width: 150px;  /* Tamanho fixo para todas as imagens */
+    height: 150px; /* Mantendo altura igual para formar um círculo perfeito */
+    object-fit: cover; /* Garante que a imagem cubra o círculo sem distorção */
+    border-radius: 50%; /* Transforma a imagem em um círculo */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+button {
+    background-color: #25D366; /* Verde do WhatsApp */
+    margin-left:43%;
+    color: white;
+    font-size: 24px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  button:hover {
+    background-color: #1EBE5D; /* Tom mais escuro ao passar o mouse */
+    transform: scale(1.1);
+  }
+  
+  button i {
+    font-size: 24px;
+  }
+  
+
+.button:hover {
+    background: #0056b3;
+}
+.whatsapp {
+    background-color: #25d353;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: bold;
+}
+
+.whatsapp i {
+    font-size: 20px;
+}
+.floating-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background-color: #f8a808;
+    color: black;
+    font-size: 18px;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .floating-button:hover {
+    background-color: #765c06;
+    transform: scale(1.1);
+  }
+
+  #contador {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    font-weight: bold;
+} 
+
+  /*
+  #contador {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    font-weight: bold;
+} */
+
+  

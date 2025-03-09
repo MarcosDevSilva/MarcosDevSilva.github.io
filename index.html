@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congresso Jovem - Juntos em Movimento</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+        </style>
+</head>
+<body>
+    <div class="container">
+        <img class="banner" src="img/banner.jpeg" alt="Banner do Congresso Jovem">
+        <H1>Convidados</H1>
+        <span id="contador"></span>
+        <script>
+            function atualizarContador() {
+                const dataFinal = new Date('April 1, 2025 10:00:00').getTime();
+                const agora = new Date().getTime();
+                const diferenca = dataFinal - agora;
+                
+                if (diferenca <= 0) {
+                    document.getElementById('contador').innerText = 'O prazo acabou!';
+                    return;
+                }
+                
+                const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+                
+                document.getElementById('contador').innerText = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+            }
+            
+            atualizarContador();
+            setInterval(atualizarContador, 1000);
+        </script>
+        
+        
+        <div class="speakers">
+            <div class="speaker">
+                <img src="img/rafarose.jpeg" class="rafael" alt="Rafael Santos e Rose Rios">
+                <p>Pr.Rafael Santos & Rose Rios</p>
+            </div>
+            <div class="speaker">
+                <img src="img/irlanacsa.jpeg" alt="Irlan e Acsa Muniz">
+                <p>Pr. Irlan & Acsa Muniz</p>
+            </div>
+        </div>   
+        
+        <br>
+        
+        <p>Mais informações:</p>
+        <a href="https://wa.me/5583981270677" target="_blank">
+            <button style="font-size:24px"><i class="fa fa-whatsapp"></i>
+            </button>
+          </a>          
+          <a href="https://www.youtube.com/watch?v=QW6SaNLe6DM" class="floating-button">Aguarde ...</a>
+    </div>
+</body>
+<footer>
+    Direitos reservados a Marcos tassio
+</footer>
+</html>
