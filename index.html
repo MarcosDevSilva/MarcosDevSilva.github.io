@@ -1,12 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ranking - Quem Caga Mais (mês)</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f1724;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 700px;
+      background: #1a2435;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 15px;
+      background: #0b1220;
+      border-radius: 12px;
+    }
+
+    .rank {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #f59e0b;
+    }
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #333;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .meta {
+      flex: 1;
+      margin-left: 15px;
+    }
+
+    .name {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .points {
+      font-weight: bold;
+      color: #f59e0b;
+    }
+  </style>
 </head>
 <body>
-    <p>Marcos tassio</p>
-    
+  <div class="container">
+    <h1>Ranking mensal — Quem caga mais</h1>
+    <div class="list" id="rankingList"></div>
+  </div>
+
+  <script>
+    // Participantes com pontos
+    const participantes = [
+      { nome: "Yasmin",   pontos: 1, foto: "avatars/yasmin.png" },
+      { nome: "Elizeu",   pontos: 1, foto: "avatars/elizeu.png" },
+      { nome: "Camyla",   pontos: 1, foto: "avatars/camyla.png" },
+      { nome: "Tassio",   pontos: 1, foto: "avatars/tassio.png" },
+      { nome: "Simone",   pontos: 1, foto: "avatars/simone.png" },
+      { nome: "Mauricio", pontos: 0, foto: "avatars/mauricio.png" }
+    ];
+
+    // Ordenar do maior para o menor
+    participantes.sort((a, b) => b.pontos - a.pontos);
+
+    const list = document.getElementById("rankingList");
+
+    participantes.forEach((p, index) => {
+      const item = document.createElement("div");
+      item.className = "item";
+      item.innerHTML = `
+        <div class="rank">${index + 1}</div>
+        <div class="avatar"><img src="${p.foto}" alt="${p.nome}"></div>
+        <div class="meta"><p class="name">${p.nome}</p></div>
+        <div class="points">${p.pontos} pts</div>
+      `;
+      list.appendChild(item);
+    });
+  </script>
 </body>
 </html>
