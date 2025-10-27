@@ -23,6 +23,7 @@
       padding: 20px;
       border-radius: 15px;
       box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+      position: relative;
     }
 
     h1 {
@@ -86,6 +87,22 @@
       font-weight: bold;
       color: #f59e0b;
     }
+
+    /* Caixinha total no canto inferior direito */
+    .total-box {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #1a2435;
+      border: 2px solid #f59e0b;
+      padding: 10px 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      font-size: 16px;
+      font-weight: bold;
+      color: #fbbf24;
+      z-index: 999;
+    }
   </style>
 </head>
 <body>
@@ -93,6 +110,8 @@
     <h1>Ranking outubro — Quem caga mais</h1>
     <div class="list" id="rankingList"></div>
   </div>
+
+  <div class="total-box" id="totalBox">Total: 0 pts</div>
 
   <script>
     // Participantes com pontos
@@ -103,14 +122,16 @@
       { nome: "Tassio",   pontos: 28, foto: "avatars/tassio.png" },
       { nome: "Simone",   pontos: 17, foto: "avatars/simone.png" },
       { nome: "Mauricio", pontos: 28, foto: "avatars/mauricio.png" },
-      { nome: "Fatinha", pontos: 28, foto: "avatars/fatinha.png" }
+      { nome: "Fatinha",  pontos: 28, foto: "avatars/fatinha.png" }
     ];
 
     // Ordenar do maior para o menor
     participantes.sort((a, b) => b.pontos - a.pontos);
 
     const list = document.getElementById("rankingList");
+    const totalBox = document.getElementById("totalBox");
 
+    // Montar ranking
     participantes.forEach((p, index) => {
       const item = document.createElement("div");
       item.className = "item";
@@ -122,6 +143,10 @@
       `;
       list.appendChild(item);
     });
+
+    // Calcular total de pontos
+    const totalPontos = participantes.reduce((sum, p) => sum + p.pontos, 0);
+    totalBox.textContent = `Vocês Cagaram: ${totalPontos} vezes`;
   </script>
 </body>
 </html>
