@@ -1,0 +1,18 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E5521A;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Fundo arredondado -->
+  <rect width="512" height="512" rx="96" ry="96" fill="url(#bg)"/>
+  <!-- Triângulo de play -->
+  <polygon points="190,155 190,310 340,232" fill="white" opacity="0.95"/>
+  <!-- Seta de download -->
+  <g fill="white" opacity="0.85">
+    <rect x="242" y="330" width="28" height="60" rx="6"/>
+    <polygon points="218,368 256,420 294,368"/>
+    <rect x="200" y="418" width="112" height="18" rx="9"/>
+  </g>
+</svg>

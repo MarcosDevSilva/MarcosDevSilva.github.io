@@ -1,0 +1,12 @@
+# Dependências do Node (usadas apenas localmente para gerar ícones)
+node_modules/
+package.json
+package-lock.json
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
