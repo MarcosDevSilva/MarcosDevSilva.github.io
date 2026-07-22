@@ -29,6 +29,7 @@ const DEMO_MODE = true;
 
 /** Domínios aceitos como válidos para links da Shopee */
 const SHOPEE_DOMAINS = [
+  // Sites principais
   "shopee.com.br",
   "shopee.com",
   "shopee.vn",
@@ -37,8 +38,13 @@ const SHOPEE_DOMAINS = [
   "shopee.co.id",
   "shopee.co.th",
   "shopee.com.my",
+  // Encurtadores de link da Shopee
   "shope.ee",
+  "br.shp.ee",   // ← link curto Brasil (ex: br.shp.ee/vjf13l0a)
+  "shp.ee",
+  "s.shopee.com.br",
 ];
+
 
 /** Duração simulada do processamento em ms (modo demo) */
 const DEMO_DELAY_BASE = 800;
