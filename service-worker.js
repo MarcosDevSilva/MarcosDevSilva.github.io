@@ -12,7 +12,7 @@
    CONFIGURAÇÃO DO CACHE
    ============================================================ */
 
-const CACHE_VERSION  = "shopee-vd-v1";
+const CACHE_VERSION  = "shopee-vd-v2";
 const CACHE_STATIC   = `${CACHE_VERSION}-static`;
 const CACHE_DYNAMIC  = `${CACHE_VERSION}-dynamic`;
 

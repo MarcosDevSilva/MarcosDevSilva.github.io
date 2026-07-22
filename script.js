@@ -285,7 +285,7 @@ async function handleFetchVideo() {
   }
 
   if (!isShopeeUrl(url)) {
-    showUrlError("Apenas links da Shopee são aceitos (shopee.com.br, shope.ee etc).");
+    showUrlError("Apenas links da Shopee são aceitos (shopee.com.br, br.shp.ee, shope.ee etc).");
     elVideoUrl.focus();
     return;
   }
