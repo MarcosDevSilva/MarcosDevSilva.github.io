@@ -12,7 +12,7 @@
    CONFIGURAÇÃO DO CACHE
    ============================================================ */
 
-const CACHE_VERSION  = "shopee-vd-v2";
+const CACHE_VERSION  = "shopee-vd-v3";
 const CACHE_STATIC   = `${CACHE_VERSION}-static`;
 const CACHE_DYNAMIC  = `${CACHE_VERSION}-dynamic`;
 
@@ -34,7 +34,8 @@ const PRECACHE_URLS = [
 ];
 
 /** Domínios da API — usam Network-First (nunca cacheados) */
-const API_ORIGINS = ["sua-api.com"];
+const API_ORIGINS = ["shopee-vd-apishopee-vd-api.onrender.com"];
+
 
 /* ============================================================
    EVENTO: INSTALL

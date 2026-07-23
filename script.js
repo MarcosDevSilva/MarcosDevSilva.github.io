@@ -12,16 +12,16 @@
 
 /**
  * URL base da sua API backend.
- * Exemplo: "https://minha-api.onrender.com"
  */
-const API_BASE_URL = "https://sua-api.com";
+const API_BASE_URL = "https://shopee-vd-apishopee-vd-api.onrender.com";
 
 /**
  * Modo demonstração.
  * true  → simula todo o fluxo com dados fictícios (sem API real)
  * false → chama a API real em API_BASE_URL
  */
-const DEMO_MODE = true;
+const DEMO_MODE = false;
+
 
 /* ============================================================
    CONSTANTES INTERNAS
