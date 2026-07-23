@@ -209,7 +209,41 @@ function setupEventListeners() {
     resetResults();
     elVideoUrl.focus();
   });
+
+  // Clique no botão final de salvar (força o download via Blob)
+  elDownloadLink.addEventListener("click", async (e) => {
+    if (elDownloadLink.href.startsWith("blob:")) return;
+
+    e.preventDefault();
+    const targetUrl = elDownloadLink.href;
+    const filename = elDownloadLink.download || "video-shopee.mp4";
+
+    const originalText = elDownloadLink.textContent;
+    elDownloadLink.textContent = "⏳ Salvando arquivo...";
+
+    try {
+      const response = await fetch(targetUrl);
+      if (!response.ok) throw new Error("Erro ao baixar o arquivo.");
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+
+      const tempA = document.createElement("a");
+      tempA.href = blobUrl;
+      tempA.download = filename;
+      document.body.appendChild(tempA);
+      tempA.click();
+      document.body.removeChild(tempA);
+
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
+      elDownloadLink.textContent = "✅ Download concluído com sucesso!";
+    } catch (err) {
+      console.error("[DownloadLink]", err);
+      window.location.href = targetUrl;
+      elDownloadLink.textContent = originalText;
+    }
+  });
 }
+
 
 /* ============================================================
    VALIDAÇÃO DE URL
@@ -392,12 +426,14 @@ async function handleDownloadVideo() {
     setProgress(100);
     await delay(400);
 
-    // Exibe link de download
+    // 1. Atualiza mensagens de status primeiro
+    showStatus("✅", "Download pronto! Clique no botão abaixo para salvar.", "is-success");
+    elProgressCont.classList.add("hidden");
+
+    // 2. Configura e EXIBE o botão de download (APÓS o showStatus)
     elDownloadLink.href = result.downloadUrl;
     elDownloadLink.download = result.filename || "video-shopee.mp4";
     elDownloadLink.classList.remove("hidden");
-    elProgressCont.classList.add("hidden");
-    showStatus("✅", "Download pronto! Clique no botão abaixo para salvar.", "is-success");
 
   } catch (err) {
     showStatus("❌", err.message || "Erro ao processar o vídeo.", "is-error");
@@ -409,6 +445,7 @@ async function handleDownloadVideo() {
     setDownloadLoading(false);
   }
 }
+
 
 /**
  * Chama a API de processamento ou simula no modo demo
