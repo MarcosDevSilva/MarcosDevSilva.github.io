@@ -169,7 +169,53 @@
           </div>
         </div>
 
-        <!-- Opção de remover metadados -->
+        <!-- Opções de processamento de vídeo -->
+        <div class="option-row">
+          <label class="toggle-label" for="clean-watermark">
+            <span class="toggle-wrapper">
+              <input
+                type="checkbox"
+                id="clean-watermark"
+                class="toggle-input"
+                checked
+                aria-describedby="watermark-hint"
+              />
+              <span class="toggle-track" aria-hidden="true">
+                <span class="toggle-thumb"></span>
+              </span>
+            </span>
+            <span class="toggle-text">
+              <strong>Remover marcas d'água (Shopee & Afiliado)</strong>
+              <span id="watermark-hint" class="toggle-hint">
+                Corta as bordas com logo da Shopee e dados do afiliado.
+              </span>
+            </span>
+          </label>
+        </div>
+
+        <div class="option-row">
+          <label class="toggle-label" for="format-resolution">
+            <span class="toggle-wrapper">
+              <input
+                type="checkbox"
+                id="format-resolution"
+                class="toggle-input"
+                checked
+                aria-describedby="resolution-hint"
+              />
+              <span class="toggle-track" aria-hidden="true">
+                <span class="toggle-thumb"></span>
+              </span>
+            </span>
+            <span class="toggle-text">
+              <strong>Ajustar resolução para 720x1080 (HD Vertical)</strong>
+              <span id="resolution-hint" class="toggle-hint">
+                Gera o vídeo limpo em formato 9:16 padronizado.
+              </span>
+            </span>
+          </label>
+        </div>
+
         <div class="option-row">
           <label class="toggle-label" for="remove-metadata">
             <span class="toggle-wrapper">

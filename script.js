@@ -85,6 +85,8 @@ const elBtnWatch        = $("btn-watch");
 const elPreviewTitle    = $("preview-title");
 const elPreviewDuration = $("preview-duration");
 const elPreviewDurVal   = $("preview-duration-value");
+const elCleanWatermark  = $("clean-watermark");
+const elFormatResolution = $("format-resolution");
 const elRemoveMetadata  = $("remove-metadata");
 const elBtnDownload     = $("btn-download");
 const elStatusCard      = $("status-card");
@@ -397,7 +399,9 @@ async function handleDownloadVideo() {
     return;
   }
 
-  const removeMetadata = elRemoveMetadata.checked;
+  const removeMetadata   = elRemoveMetadata ? elRemoveMetadata.checked : true;
+  const cleanWatermark   = elCleanWatermark ? elCleanWatermark.checked : true;
+  const formatResolution = elFormatResolution ? elFormatResolution.checked : true;
   const url = elVideoUrl.value.trim();
 
   setDownloadLoading(true);
@@ -410,14 +414,26 @@ async function handleDownloadVideo() {
     await delay(DEMO_DELAY_BASE);
     setProgress(30);
 
+    if (cleanWatermark || formatResolution) {
+      showStatus("✂️", "Removendo marca d'água e formatando 720x1080…", "");
+      await delay(DEMO_DELAY_BASE + 400);
+      setProgress(60);
+    }
+
     if (removeMetadata) {
       showStatus("🧹", "Removendo metadados…", "");
-      await delay(DEMO_DELAY_BASE + 400);
-      setProgress(65);
+      await delay(DEMO_DELAY_BASE + 200);
+      setProgress(80);
     }
 
     showStatus("📦", "Finalizando arquivo…", "");
-    const result = await processVideo(url, removeMetadata);
+    const result = await processVideo(url, {
+      removeMetadata,
+      cleanWatermark,
+      formatResolution,
+      targetWidth: 720,
+      targetHeight: 1080,
+    });
 
     if (!result.success) {
       throw new Error(result.message || "Falha ao processar o vídeo.");
@@ -450,20 +466,29 @@ async function handleDownloadVideo() {
 /**
  * Chama a API de processamento ou simula no modo demo
  * Endpoint: POST /api/video/process
- * Body: { url, removeMetadata }
+ * Body: { url, removeMetadata, cleanWatermark, formatResolution, targetWidth, targetHeight }
  * @param {string} url
- * @param {boolean} removeMetadata
+ * @param {object} options
  * @returns {Promise<object>}
  */
-async function processVideo(url, removeMetadata) {
+async function processVideo(url, options = {}) {
   if (DEMO_MODE) {
     return simulateProcessVideo();
   }
 
+  const payload = {
+    url,
+    removeMetadata: options.removeMetadata ?? true,
+    cleanWatermark: options.cleanWatermark ?? true,
+    formatResolution: options.formatResolution ?? true,
+    targetWidth: options.targetWidth || 720,
+    targetHeight: options.targetHeight || 1080,
+  };
+
   const response = await fetch(`${API_BASE_URL}/api/video/process`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ url, removeMetadata }),
+    body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
