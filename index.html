@@ -1,345 +1,378 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#FF6B35" />
-  <meta name="description" content="Baixe vídeos públicos da Shopee de forma simples, rápida e sem metadados desnecessários." />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="ShopeeVD" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Desenvolvedor Full Stack especializado na criação de aplicações web, sistemas, plataformas SaaS e soluções digitais."
+    />
+    <link rel="canonical" href="https://marcosdevsilva.github.io/" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Shopee Video Downloader" />
-  <meta property="og:description" content="Baixe vídeos públicos da Shopee de forma simples e rápida." />
-  <meta property="og:type" content="website" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Marcos Tassio | Desenvolvedor Full Stack" />
+    <meta
+      property="og:description"
+      content="Desenvolvedor Full Stack especializado na criação de aplicações web, sistemas, plataformas SaaS e soluções digitais."
+    />
+    <meta property="og:url" content="https://marcosdevsilva.github.io/" />
+    <meta property="og:image" content="https://marcosdevsilva.github.io/assets/cases/ponto-da-pizza-carrinho-aberto.png" />
 
-  <title>Shopee Video Downloader</title>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Marcos Tassio | Desenvolvedor Full Stack" />
+    <meta
+      name="twitter:description"
+      content="Desenvolvedor Full Stack especializado na criação de aplicações web, sistemas, plataformas SaaS e soluções digitais."
+    />
+    <meta name="twitter:image" content="https://marcosdevsilva.github.io/assets/cases/ponto-da-pizza-carrinho-aberto.png" />
 
-  <!-- Manifest PWA -->
-  <link rel="manifest" href="manifest.json" />
+    <title>Marcos Tassio | Desenvolvedor Full Stack</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="style.css" as="style" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <!-- Ícones -->
-  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
-  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <header class="site-header" data-header>
+      <div class="header-inner">
+        <a class="brand" href="#top" aria-label="Voltar ao início">
+          <span class="brand-mark">MT.</span>
+          <span class="brand-name">Marcos Tassio</span>
+        </a>
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+        <nav class="site-nav" aria-label="Navegação principal">
+          <a href="#projetos">Projetos</a>
+          <a href="#engenharia">Engenharia</a>
+          <a href="#stack">Stack</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#contato">Contato</a>
+        </nav>
 
-  <!-- Banner de offline -->
-  <div id="offline-banner" class="offline-banner hidden" role="alert" aria-live="assertive">
-    <span class="offline-icon">📡</span>
-    <span>Você está offline. A interface funciona, mas o download exige conexão.</span>
-  </div>
-
-  <!-- Banner de instalação PWA -->
-  <div id="install-banner" class="install-banner hidden" role="complementary" aria-label="Instalar aplicativo">
-    <div class="install-banner__content">
-      <span class="install-icon">📲</span>
-      <span>Instale o app para acesso rápido!</span>
-    </div>
-    <div class="install-banner__actions">
-      <button id="btn-install" class="btn btn--install" aria-label="Instalar aplicativo">Instalar</button>
-      <button id="btn-dismiss-install" class="btn btn--ghost btn--sm" aria-label="Dispensar aviso de instalação">✕</button>
-    </div>
-  </div>
-
-  <!-- Cabeçalho -->
-  <header class="header" role="banner">
-    <div class="container">
-      <div class="header__inner">
-        <div class="header__logo">
-          <span class="logo-icon" aria-hidden="true">▶</span>
-          <div>
-            <h1 class="header__title">Shopee Video Downloader</h1>
-            <p class="header__subtitle">Powered by open web</p>
-          </div>
-        </div>
-        <div class="header__badge" aria-label="Modo demonstração ativo" id="demo-badge">
-          DEMO
-        </div>
+        <a class="header-cta" href="#contato">Vamos conversar</a>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- Conteúdo principal -->
-  <main class="main" id="main-content" role="main">
-    <div class="container">
-
-      <!-- Descrição -->
-      <section class="hero" aria-label="Introdução">
-        <p class="hero__description">
-          Cole o link de um vídeo <strong>público</strong> da Shopee e faça o download
-          diretamente — limpo, sem metadados desnecessários.
-        </p>
-      </section>
-
-      <!-- Card principal: busca -->
-      <section class="card search-card" aria-label="Buscar vídeo">
-
-        <div class="form-group">
-          <label for="video-url" class="form-label">
-            Link do vídeo da Shopee
-          </label>
-          <div class="input-wrapper">
-            <span class="input-icon" aria-hidden="true">🔗</span>
-            <input
-              type="url"
-              id="video-url"
-              class="form-input"
-              placeholder="https://shopee.com.br/..."
-              aria-label="Cole aqui o link do vídeo da Shopee"
-              aria-describedby="url-hint url-error"
-              autocomplete="off"
-              spellcheck="false"
-            />
-            <button
-              type="button"
-              id="btn-clear-url"
-              class="btn-clear-url hidden"
-              aria-label="Limpar campo"
-              title="Limpar"
-            >✕</button>
+    <main id="conteudo">
+      <section class="hero section" id="top" aria-labelledby="hero-title">
+        <div class="hero-content reveal">
+          <p class="eyebrow">Desenvolvedor Full Stack</p>
+          <h1 id="hero-title">Transformo ideias em sistemas, aplicações web e produtos digitais.</h1>
+          <p class="hero-text">
+            Desenvolvimento Full Stack do frontend à infraestrutura, criando soluções digitais
+            pensadas para produto, experiência e negócio.
+          </p>
+          <div class="hero-actions" aria-label="Ações principais">
+            <a class="button button-primary" href="#projetos">Ver projetos</a>
+            <a class="button button-secondary" href="#contato">Entrar em contato</a>
           </div>
-          <span id="url-hint" class="form-hint">
-            Suporte a links shopee.com.br, br.shp.ee, shope.ee e similares.
-          </span>
-          <span id="url-error" class="form-error hidden" role="alert" aria-live="polite"></span>
         </div>
 
-        <button
-          type="button"
-          id="btn-fetch"
-          class="btn btn--primary btn--full"
-          aria-label="Buscar informações do vídeo"
-        >
-          <span class="btn__icon" aria-hidden="true">🔍</span>
-          <span class="btn__label">Buscar vídeo</span>
-          <span class="btn__spinner spinner hidden" aria-hidden="true"></span>
-        </button>
-
+        <div class="hero-system reveal" aria-label="Áreas de atuação">
+          <span>Frontend</span>
+          <span>Backend</span>
+          <span>Produto</span>
+          <span>Infraestrutura</span>
+        </div>
       </section>
 
-      <!-- Card de pré-visualização (oculto inicialmente) -->
-      <section
-        id="preview-card"
-        class="card preview-card hidden"
-        aria-label="Pré-visualização do vídeo"
-        aria-live="polite"
-      >
-        <h2 class="card__title">Pré-visualização</h2>
+      <section class="section product-path" aria-labelledby="path-title">
+        <div class="section-intro reveal">
+          <p class="eyebrow">Da interface ao produto</p>
+          <h2 id="path-title">Construção digital com visão de evolução.</h2>
+        </div>
+        <ol class="path-list">
+          <li class="reveal">
+            <span>01</span>
+            <h3>Presença digital</h3>
+            <p>Sites e experiências que comunicam produtos e negócios.</p>
+          </li>
+          <li class="reveal">
+            <span>02</span>
+            <h3>Sistemas</h3>
+            <p>Aplicações que transformam processos em experiências digitais.</p>
+          </li>
+          <li class="reveal">
+            <span>03</span>
+            <h3>Produtos</h3>
+            <p>Soluções estruturadas para crescer, evoluir e ganhar escala.</p>
+          </li>
+        </ol>
+      </section>
 
-        <div class="preview-layout">
-          <!-- Thumbnail -->
-          <div class="preview-thumbnail-wrapper">
-            <img
-              id="preview-thumbnail"
-              class="preview-thumbnail"
-              src=""
-              alt="Capa do vídeo"
-              loading="lazy"
-            />
-            <a
-              id="btn-watch"
-              class="btn-watch-overlay"
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Assistir ao vídeo original"
-              title="Assistir ao vídeo"
-            >
-              <span class="play-icon" aria-hidden="true">▶</span>
+      <section class="section projects-section" id="projetos" aria-labelledby="projects-title">
+        <div class="section-intro reveal">
+          <p class="eyebrow">Projetos em destaque</p>
+          <h2 id="projects-title">Produtos e soluções que desenvolvi.</h2>
+          <p>
+            Uma seleção de aplicações e experiências digitais construídas para resolver problemas
+            reais de negócio.
+          </p>
+        </div>
+
+        <article class="project-feature reveal" id="ponto-da-pizza">
+          <div class="project-content">
+            <p class="project-index">01 / PROJECT</p>
+            <p class="project-category">Web App · Food Tech</p>
+            <h3>Ponto da Pizza</h3>
+            <p class="project-lead">
+              Aplicação web desenvolvida para transformar o processo de pedidos de uma pizzaria em
+              uma experiência digital própria, permitindo que clientes naveguem pelo cardápio,
+              personalizem produtos e realizem seus pedidos online.
+            </p>
+            <ul class="tag-list" aria-label="Características do projeto">
+              <li>Sistema de pedidos online</li>
+              <li>Cardápio digital</li>
+              <li>Carrinho</li>
+              <li>Entrega e retirada</li>
+            </ul>
+            <a class="text-link" href="https://pontodapizza.assumdigital.com" target="_blank" rel="noreferrer">
+              Acessar projeto
             </a>
           </div>
 
-          <!-- Metainformações -->
-          <div class="preview-info">
-            <p id="preview-title" class="preview-title"></p>
-            <p id="preview-duration" class="preview-duration hidden">
-              <span class="info-label" aria-hidden="true">⏱</span>
-              <span id="preview-duration-value"></span>
+          <div class="project-visual" aria-label="Capturas do Ponto da Pizza">
+            <figure class="screen-main">
+              <img
+                src="assets/cases/ponto-da-pizza-carrinho-aberto.png"
+                alt="Carrinho de compras do Ponto da Pizza"
+                width="1273"
+                height="720"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <figure class="screen-secondary">
+              <img
+                src="assets/cases/ponto-da-pizza-cardapio.png"
+                alt="Cardápio do Ponto da Pizza"
+                width="1273"
+                height="720"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <figure class="screen-mobile">
+              <img
+                src="assets/cases/ponto-da-pizza-mobile.png"
+                alt="Versão mobile do cardápio do Ponto da Pizza"
+                width="390"
+                height="844"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          </div>
+        </article>
+
+        <div class="case-breakdown" aria-label="Case Ponto da Pizza">
+          <div class="reveal">
+            <h4>Desafio</h4>
+            <p>
+              Levar o atendimento da pizzaria para um fluxo digital próprio, reduzindo etapas manuais
+              e facilitando a escolha dos produtos.
             </p>
-            <p id="preview-source" class="preview-source">
-              <span class="info-label" aria-hidden="true">🌐</span>
-              <span>Shopee</span>
+          </div>
+          <div class="reveal">
+            <h4>Solução</h4>
+            <p>
+              Uma interface de pedidos com cardápio, personalização de itens, carrinho e opções de
+              entrega ou retirada.
+            </p>
+          </div>
+          <div class="reveal">
+            <h4>Principais funcionalidades</h4>
+            <p>
+              Cardápio por categorias, produtos com variações, adicionais, observações, carrinho,
+              autenticação e fluxo de pedido.
+            </p>
+          </div>
+          <div class="reveal">
+            <h4>Resultado</h4>
+            <p>
+              Produto entregue como sistema de pedidos online, com navegação, personalização e
+              compra organizadas em uma experiência única.
             </p>
           </div>
         </div>
 
-        <!-- Opções de processamento de vídeo -->
-        <div class="option-row">
-          <label class="toggle-label" for="clean-watermark">
-            <span class="toggle-wrapper">
-              <input
-                type="checkbox"
-                id="clean-watermark"
-                class="toggle-input"
-                checked
-                aria-describedby="watermark-hint"
-              />
-              <span class="toggle-track" aria-hidden="true">
-                <span class="toggle-thumb"></span>
-              </span>
-            </span>
-            <span class="toggle-text">
-              <strong>Remover marcas d'água (Shopee & Afiliado)</strong>
-              <span id="watermark-hint" class="toggle-hint">
-                Corta as bordas com logo da Shopee e dados do afiliado.
-              </span>
-            </span>
-          </label>
-        </div>
-
-        <div class="option-row">
-          <label class="toggle-label" for="format-resolution">
-            <span class="toggle-wrapper">
-              <input
-                type="checkbox"
-                id="format-resolution"
-                class="toggle-input"
-                checked
-                aria-describedby="resolution-hint"
-              />
-              <span class="toggle-track" aria-hidden="true">
-                <span class="toggle-thumb"></span>
-              </span>
-            </span>
-            <span class="toggle-text">
-              <strong>Ajustar resolução para 720x1080 (HD Vertical)</strong>
-              <span id="resolution-hint" class="toggle-hint">
-                Gera o vídeo limpo em formato 9:16 padronizado.
-              </span>
-            </span>
-          </label>
-        </div>
-
-        <div class="option-row">
-          <label class="toggle-label" for="remove-metadata">
-            <span class="toggle-wrapper">
-              <input
-                type="checkbox"
-                id="remove-metadata"
-                class="toggle-input"
-                checked
-                aria-describedby="metadata-hint"
-              />
-              <span class="toggle-track" aria-hidden="true">
-                <span class="toggle-thumb"></span>
-              </span>
-            </span>
-            <span class="toggle-text">
-              <strong>Remover metadados do arquivo</strong>
-              <span id="metadata-hint" class="toggle-hint">
-                Gera um arquivo sem dados de rastreamento (processado pelo backend).
-              </span>
-            </span>
-          </label>
-        </div>
-
-        <!-- Botão de download -->
-        <button
-          type="button"
-          id="btn-download"
-          class="btn btn--primary btn--full"
-          aria-label="Iniciar download do vídeo"
-        >
-          <span class="btn__icon" aria-hidden="true">⬇</span>
-          <span class="btn__label">Baixar vídeo</span>
-          <span class="btn__spinner spinner hidden" aria-hidden="true"></span>
-        </button>
-
-      </section>
-
-      <!-- Card de status e progresso -->
-      <section
-        id="status-card"
-        class="card status-card hidden"
-        aria-label="Status do processamento"
-        aria-live="polite"
-      >
-        <h2 class="card__title sr-only">Status</h2>
-
-        <!-- Ícone de status -->
-        <div id="status-icon" class="status-icon" aria-hidden="true"></div>
-
-        <!-- Mensagem de status -->
-        <p id="status-message" class="status-message"></p>
-
-        <!-- Barra de progresso -->
-        <div
-          id="progress-container"
-          class="progress-container hidden"
-          role="progressbar"
-          aria-valuemin="0"
-          aria-valuemax="100"
-          aria-valuenow="0"
-          aria-label="Progresso do processamento"
-        >
-          <div id="progress-bar" class="progress-bar">
-            <div id="progress-fill" class="progress-fill"></div>
+        <article class="project-secondary reveal" id="assum-digital">
+          <div class="project-shot">
+            <img
+              src="assets/cases/assum-digital-desktop.png"
+              alt="Página inicial da Assum Digital"
+              width="1273"
+              height="720"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <span id="progress-label" class="progress-label">0%</span>
-        </div>
-
-        <!-- Botão tentar novamente -->
-        <button
-          type="button"
-          id="btn-retry"
-          class="btn btn--ghost btn--full hidden"
-          aria-label="Tentar novamente"
-        >
-          🔄 Tentar novamente
-        </button>
-
-        <!-- Link de download final -->
-        <a
-          id="download-link"
-          class="btn btn--success btn--full hidden"
-          href="#"
-          download
-          aria-label="Baixar arquivo de vídeo"
-        >
-          ✅ Download pronto — clique para salvar
-        </a>
-
+          <div class="project-content">
+            <p class="project-index">02 / PROJECT</p>
+            <p class="project-category">Soluções digitais / Desenvolvimento Web</p>
+            <h3>Assum Digital</h3>
+            <p>
+              Plataforma digital criada para apresentar soluções em desenvolvimento web, sistemas,
+              SaaS, automações e integrações para empresas.
+            </p>
+            <p class="project-stack">React · Node.js · TypeScript · Python</p>
+            <a class="text-link" href="https://assumdigital.com" target="_blank" rel="noreferrer">
+              Acessar projeto
+            </a>
+          </div>
+        </article>
       </section>
 
-    </div>
-  </main>
+      <section class="section engineering-section" id="engenharia" aria-labelledby="engineering-title">
+        <div class="engineering-copy reveal">
+          <p class="eyebrow">Engenharia</p>
+          <h2 id="engineering-title">Engenharia por trás dos projetos.</h2>
+          <p>
+            Interfaces são apenas uma parte do produto. Estruturo aplicações pensando também em
+            domínio, dados, integrações, infraestrutura e evolução.
+          </p>
+        </div>
 
-  <!-- Rodapé -->
-  <footer class="footer" role="contentinfo">
-    <div class="container">
-      <p class="footer__warning">
-        ⚠️ <strong>Uso responsável:</strong> Baixe apenas vídeos que você tem
-        autorização para usar. Respeite os direitos autorais e os
-        <a href="https://shopee.com.br/legalpages/terms" target="_blank" rel="noopener noreferrer">
-          termos de uso da Shopee
-        </a>.
-      </p>
-      <p class="footer__copy">
-        Shopee Video Downloader &mdash; Projeto open-source para fins educacionais.
-      </p>
-    </div>
-  </footer>
+        <ol class="architecture-flow reveal" aria-label="Abordagem de arquitetura">
+          <li>
+            <span>User</span>
+            <strong>Experiência e jornada</strong>
+          </li>
+          <li>
+            <span>Frontend</span>
+            <strong>React / TypeScript</strong>
+          </li>
+          <li>
+            <span>Application</span>
+            <strong>Node.js / APIs</strong>
+          </li>
+          <li>
+            <span>Domain</span>
+            <strong>Business Rules</strong>
+          </li>
+          <li>
+            <span>Data</span>
+            <strong>PostgreSQL / Supabase</strong>
+          </li>
+          <li>
+            <span>Infrastructure</span>
+            <strong>Docker / Deploy</strong>
+          </li>
+        </ol>
+      </section>
 
-  <!-- Service Worker -->
-  <script>
-    // Registro do Service Worker
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(reg => console.log('[SW] Registrado:', reg.scope))
-          .catch(err => console.warn('[SW] Falha ao registrar:', err));
-      });
-    }
-  </script>
+      <section class="section stack-section" id="stack" aria-labelledby="stack-title">
+        <div class="section-intro reveal">
+          <p class="eyebrow">Stack</p>
+          <h2 id="stack-title">Tecnologias & Ferramentas.</h2>
+        </div>
 
-  <!-- Script principal -->
-  <script src="script.js" defer></script>
+        <div class="stack-grid">
+          <section class="stack-group reveal" aria-labelledby="frontend-title">
+            <h3 id="frontend-title">Frontend</h3>
+            <ul>
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>TypeScript</li>
+              <li>React</li>
+              <li>React Native</li>
+            </ul>
+          </section>
 
-</body>
+          <section class="stack-group reveal" aria-labelledby="backend-title">
+            <h3 id="backend-title">Backend</h3>
+            <ul>
+              <li>Node.js</li>
+              <li>Express</li>
+              <li>Python</li>
+            </ul>
+          </section>
+
+          <section class="stack-group reveal" aria-labelledby="infra-title">
+            <h3 id="infra-title">Dados / Infra</h3>
+            <ul>
+              <li>PostgreSQL</li>
+              <li>Supabase</li>
+              <li>Sequelize</li>
+              <li>Docker</li>
+              <li>Git</li>
+              <li>GitHub</li>
+              <li>Coolify</li>
+              <li>Vercel</li>
+            </ul>
+          </section>
+
+          <section class="stack-group reveal" aria-labelledby="architecture-title">
+            <h3 id="architecture-title">Engenharia</h3>
+            <ul>
+              <li>REST APIs</li>
+              <li>Testes automatizados</li>
+              <li>DDD</li>
+              <li>SDD</li>
+              <li>Arquitetura modular</li>
+              <li>CI/CD</li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="section about-section" id="sobre" aria-labelledby="about-title">
+        <div class="about-copy reveal">
+          <p class="eyebrow">Sobre mim</p>
+          <h2 id="about-title">Marcos Tassio, Desenvolvedor Full Stack.</h2>
+          <p>
+            Sou Desenvolvedor Full Stack, curso Análise e Desenvolvimento de Sistemas e tenho
+            experiência na construção de aplicações, sistemas web e soluções digitais.
+          </p>
+          <p>
+            Minha trajetória anterior na área de soldagem reforçou disciplina, precisão, resolução de
+            problemas, responsabilidade e atenção aos detalhes. Hoje aplico essa mentalidade na criação
+            de produtos digitais funcionais.
+          </p>
+        </div>
+
+        <div class="education reveal" aria-label="Formação">
+          <h3>Formação</h3>
+          <ul>
+            <li>Análise e Desenvolvimento de Sistemas — em andamento</li>
+            <li>Formação Full Stack — Trybe</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contato" aria-labelledby="contact-title">
+        <div class="contact-copy reveal">
+          <p class="eyebrow">Contato</p>
+          <h2 id="contact-title">Vamos construir algo?</h2>
+          <p>
+            Se você precisa transformar uma ideia, processo ou problema em uma solução digital,
+            podemos conversar.
+          </p>
+        </div>
+
+        <div class="contact-actions reveal">
+          <a
+            class="button button-primary"
+            href="https://wa.me/5583996235525"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Conversar pelo WhatsApp"
+          >
+            WhatsApp
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Marcos Tassio</strong>
+        <p>Desenvolvedor Full Stack</p>
+      </div>
+      <p>Built with HTML, CSS & JavaScript · <span data-current-year></span></p>
+      <a href="#contato">Contato</a>
+    </footer>
+  </body>
 </html>
